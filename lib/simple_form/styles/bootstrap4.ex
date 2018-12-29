@@ -46,6 +46,14 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  def email_input(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
+    style_module.wrapper form_input do
+      [
+        Form.email_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
+      ]
+    end
+  end
+
   def select(%FormInput{form: form, field: field, input_attrs: input_attrs, collection: collection, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
       Form.select(
