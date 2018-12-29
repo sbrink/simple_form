@@ -1,0 +1,22 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "_build": true,
+    ".mix_tasks": true,
+    ".elixir_ls": true,
+    ".vscode": true,
+    "node_modules": true,
+    "deps": true
+  },
+  "search.exclude": {
+    "priv/templates": true,
+    "priv/repo/structure.sql": true,
+    "deps": true,
+    "log": true,
+    "cover": true
+  },
+  "editor.tabSize": 2,
+  "editor.trimAutoWhitespace": true,
+  "files.trimTrailingWhitespace": true
+}
