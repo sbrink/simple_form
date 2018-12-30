@@ -7,9 +7,12 @@ defmodule SimpleForm.Styles.Bootstrap4 do
   alias SimpleForm.FormInput
 
   def checkbox(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
-    style_module.wrapper form_input do
+    Tag.content_tag :div, class: "form-check" do
       [
-        Form.text_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
+        Form.checkbox(form, field, Keyword.merge(input_attrs, class: "form-check-input")),
+        style_module.label(form_input),
+        style_module.hint(form_input),
+        style_module.error_tag(form_input)
       ]
     end
   end
