@@ -19,49 +19,43 @@ defmodule SimpleForm.Styles.Bootstrap4 do
 
   def date_select(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
-      [
-        Form.text_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
-      ]
+      Form.text_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
     end
   end
 
   def datetime_select(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
-      [
-        Form.text_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
-      ]
+      Form.text_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
     end
   end
 
   def number_input(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
-      [
-        Form.number_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
-      ]
+      Form.number_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
     end
   end
 
   def text_input(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
-      [
-        Form.text_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
-      ]
+      Form.text_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
     end
   end
 
   def email_input(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
-      [
-        Form.email_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
-      ]
+      Form.email_input(form, field, Keyword.merge(input_attrs, class: "form-control"))
     end
   end
 
   def textarea(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
-      [
-        Form.textarea(form, field, Keyword.merge(input_attrs, class: "form-control"))
-      ]
+      Form.textarea(form, field, Keyword.merge(input_attrs, class: "form-control"))
+    end
+  end
+
+  def plain(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
+    style_module.wrapper form_input do
+      Form.text_input(form, field, Keyword.merge(input_attrs, class: "form-control-plaintext", readonly: true))
     end
   end
 
