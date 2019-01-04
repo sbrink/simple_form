@@ -85,10 +85,42 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     Tag.content_tag :div, class: "form-group" do
       [
         style_module.label(form_input),
-        block,
+        style_module.input_group(form_input, block),
         style_module.hint(form_input),
         style_module.error_tag(form_input)
       ]
+    end
+  end
+
+  def input_group(%FormInput{style_module: _style_module, wrapper_attrs: wrapper_attrs} = _form_input, block) do
+    prepend_text_block =
+      if prepend_text = Keyword.get(wrapper_attrs, :prepend_text) do
+        Tag.content_tag :div, class: "input-group-prepend" do
+          Tag.content_tag(:span, prepend_text, class: "input-group-text")
+        end
+      else
+        HTML.raw("")
+      end
+
+    append_text_block =
+      if append_text = Keyword.get(wrapper_attrs, :append_text) do
+        Tag.content_tag :div, class: "input-group-append" do
+          Tag.content_tag(:span, append_text, class: "input-group-text")
+        end
+      else
+        HTML.raw("")
+      end
+
+    if prepend_text || append_text do
+      Tag.content_tag :div, class: "input-group" do
+        [
+          prepend_text_block,
+          block,
+          append_text_block
+        ]
+      end
+    else
+      block
     end
   end
 
