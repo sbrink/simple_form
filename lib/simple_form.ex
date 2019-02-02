@@ -3,16 +3,6 @@ defmodule SimpleForm do
   Documentation for SimpleForm.
   """
   alias SimpleForm.FormInput
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> SimpleForm.hello()
-      :world
-
-  """
   alias SimpleForm.TypeDetector
 
   def input(form, field, opts \\ []) do
