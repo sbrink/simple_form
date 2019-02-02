@@ -118,6 +118,25 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an error tag for a form input.
+
+  iex> label(%FormInput{label: false}) |> safe_to_string()
+  ""
+
+  iex> label(%FormInput{form: %Phoenix.HTML.Form{}, field: :name, label: "Name", label_attrs: [], required: true}) |> safe_to_string()
+  ~s(<label class="control-label required" for="name">Name</label>)
+
+  iex> label(%FormInput{form: %Phoenix.HTML.Form{}, field: :name, label: "Name", label_attrs: [class: "A", disabled: "true"], required: true}) |> safe_to_string()
+  ~s(<label class="A" disabled="true" for="name">Name</label>)
+
+  iex> label(%FormInput{form: %Phoenix.HTML.Form{}, field: :name, label: "Name", label_attrs: []}) |> safe_to_string()
+  ~s(<label class="control-label" for="name">Name</label>)
+
+  iex> label(%FormInput{form: %Phoenix.HTML.Form{}, field: :name, label: "Name", label_attrs: [class: "A", disabled: "true"]}) |> safe_to_string()
+  ~s(<label class="A" disabled="true" for="name">Name</label>)
+
+  """
   def label(%FormInput{label: false}), do: HTML.raw("")
 
   def label(%FormInput{form: form, field: field, label: label, label_attrs: label_attrs, required: true}) do
