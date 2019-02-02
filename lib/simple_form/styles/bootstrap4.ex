@@ -128,6 +128,16 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     Form.label(form, field, label, Keyword.merge(label_attrs, class: "control-label"))
   end
 
+  @doc """
+  Renders an error tag for a form input.
+
+  iex> hint(%FormInput{hint: nil}) |> safe_to_string()
+  ""
+
+  iex> hint(%FormInput{hint: "This is a hint"}) |> safe_to_string()
+  ~s(<small class="text-muted">This is a hint</small>)
+
+  """
   def hint(%FormInput{hint: nil}), do: HTML.raw("")
 
   def hint(%FormInput{hint: hint}) do
