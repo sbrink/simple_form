@@ -59,6 +59,14 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an debug tag for a form input.
+
+  TODO: Import/Mock Ecto.Schema for this test and use a schema at data to provide all information for the phoenix form helper
+  # iex> select(%FormInput{form: %Phoenix.HTML.Form{data: %{name: ""}}, field: :name, input_attrs: [], collection: ["ABC"], style_module: Bootstrap4}) |> safe_to_string()
+  ""
+
+  """
   def select(%FormInput{form: form, field: field, input_attrs: input_attrs, collection: collection, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
       Form.select(
