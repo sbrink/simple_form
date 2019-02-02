@@ -59,6 +59,14 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an debug tag for a form input.
+
+  TODO: Import/Mock Ecto.Schema for this test and use a schema at data to provide all information for the phoenix form helper
+  # iex> select(%FormInput{form: %Phoenix.HTML.Form{data: %{name: ""}}, field: :name, input_attrs: [], collection: ["ABC"], style_module: Bootstrap4}) |> safe_to_string()
+  ""
+
+  """
   def select(%FormInput{form: form, field: field, input_attrs: input_attrs, collection: collection, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
       Form.select(
@@ -70,11 +78,24 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an debug tag for a form input.
+
+  iex> debug(%FormInput{}) |> safe_to_string()
+  ~s(<pre>#{%FormInput{} |> inspect(pretty: true)}</pre>)
+
+  """
   def debug(%FormInput{} = form_opts) do
     Tag.content_tag(:pre, inspect(form_opts, pretty: true))
   end
 
-  # wrapper
+  @doc """
+  Renders a wrapper with label, input group hint an error.
+  The inner block is rendered into the input group.
+
+  iex>wrapper(%FormInput{style_module: Bootstrap4, label: "Label"}, do: "#Inner Block#") |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="_">Label</label>#Inner Block#<span class="help-block text-danger">⚠ </span></div>)
+  """
   def wrapper(%FormInput{style_module: style_module} = form_input, do: block) do
     Tag.content_tag :div, class: "form-group" do
       [
@@ -86,6 +107,25 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders a input group
+
+  Without any special attribute the function renders just the inner block.
+
+  iex> input_group(%FormInput{style_module: Bootstrap4}, ~s(<div>Inner Block</div>))
+  ~s(<div>Inner Block</div>)
+
+
+  With `:prepend_text` you're able to prepend some text for the input group.
+
+  iex> input_group(%FormInput{style_module: Bootstrap4, wrapper_attrs: [prepend_text: "Some Test"]}, "#Inner Block#") |> safe_to_string()
+  ~s(<div class="input-group"><div class="input-group-prepend"><span class="input-group-text">Some Test</span></div>#Inner Block#</div>)
+
+  With `:append_text` you're able to append some text for the input group.
+
+  iex> input_group(%FormInput{style_module: Bootstrap4, wrapper_attrs: [append_text: "Some Test"]}, "#Inner Block#") |> safe_to_string()
+  ~s(<div class="input-group">#Inner Block#<div class="input-group-append"><span class="input-group-text">Some Test</span></div></div>)
+  """
   def input_group(%FormInput{style_module: _style_module, wrapper_attrs: wrapper_attrs} = _form_input, block) do
     prepend_text_block =
       if prepend_text = Keyword.get(wrapper_attrs, :prepend_text) do
@@ -118,22 +158,61 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an label tag for a form input.
+
+  iex> label(%FormInput{label: false}) |> safe_to_string()
+  ""
+
+  iex> label(%FormInput{form: %Phoenix.HTML.Form{}, field: :name, label: "Name", label_attrs: [], required: true}) |> safe_to_string()
+  ~s(<label class="control-label required" for="name">Name</label>)
+
+  iex> label(%FormInput{form: %Phoenix.HTML.Form{}, field: :name, label: "Name", label_attrs: [class: "A", disabled: "true"], required: true}) |> safe_to_string()
+  ~s(<label class="A" disabled="true" for="name">Name</label>)
+
+  iex> label(%FormInput{form: %Phoenix.HTML.Form{}, field: :name, label: "Name", label_attrs: []}) |> safe_to_string()
+  ~s(<label class="control-label" for="name">Name</label>)
+
+  iex> label(%FormInput{form: %Phoenix.HTML.Form{}, field: :name, label: "Name", label_attrs: [class: "A", disabled: "true"]}) |> safe_to_string()
+  ~s(<label class="A" disabled="true" for="name">Name</label>)
+
+  """
   def label(%FormInput{label: false}), do: HTML.raw("")
 
   def label(%FormInput{form: form, field: field, label: label, label_attrs: label_attrs, required: true}) do
-    Form.label(form, field, label, Keyword.merge(label_attrs, class: "control-label required"))
+    Form.label(form, field, label, Keyword.merge([class: "control-label required"], label_attrs))
   end
 
   def label(%FormInput{form: form, field: field, label: label, label_attrs: label_attrs}) do
-    Form.label(form, field, label, Keyword.merge(label_attrs, class: "control-label"))
+    Form.label(form, field, label, Keyword.merge([class: "control-label"], label_attrs))
   end
 
+  @doc """
+  Renders an hint tag for a form input.
+
+  iex> hint(%FormInput{hint: nil}) |> safe_to_string()
+  ""
+
+  iex> hint(%FormInput{hint: "This is a hint"}) |> safe_to_string()
+  ~s(<small class="text-muted">This is a hint</small>)
+
+  """
   def hint(%FormInput{hint: nil}), do: HTML.raw("")
 
   def hint(%FormInput{hint: hint}) do
     Tag.content_tag(:small, hint, class: "text-muted")
   end
 
+  @doc """
+  Renders an error tag for a form input.
+
+  iex> error_tag(%FormInput{errors_translated: []}) |> safe_to_string()
+  ""
+
+  iex> error_tag(%FormInput{errors_translated: ["Some Error"]}) |> safe_to_string()
+  ~s(<span class="help-block text-danger">⚠ Some Error</span>)
+
+  """
   def error_tag(%FormInput{errors_translated: []}), do: HTML.raw("")
 
   def error_tag(%FormInput{errors_translated: errors_translated}) do
