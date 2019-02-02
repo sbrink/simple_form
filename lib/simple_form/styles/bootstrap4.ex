@@ -134,6 +134,16 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     Tag.content_tag(:small, hint, class: "text-muted")
   end
 
+  @doc """
+  Renders an error tag for a form input.
+
+  iex> error_tag(%FormInput{errors_translated: []}) |> safe_to_string()
+  ""
+
+  iex> error_tag(%FormInput{errors_translated: ["Some Error"]}) |> safe_to_string()
+  ~s(<span class="help-block text-danger">⚠ Some Error</span>)
+
+  """
   def error_tag(%FormInput{errors_translated: []}), do: HTML.raw("")
 
   def error_tag(%FormInput{errors_translated: errors_translated}) do
