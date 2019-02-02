@@ -6,6 +6,18 @@ defmodule SimpleForm.Styles.Bootstrap4 do
 
   alias SimpleForm.FormInput
 
+  @doc """
+  Renders an checkbox input for a form input.
+
+  iex> checkbox(%FormInput{form: %Phoenix.HTML.Form{data: %{name: nil}}, field: :name, label: "Name", input_attrs: [], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-check"><input name="name" type="hidden" value="false"><input class="form-check-input" id="name" name="name" type="checkbox" value="true"><label class="control-label" for="name">Name</label><span class="help-block text-danger">⚠ </span></div>)
+
+  You can overwrite the input attributes
+
+  iex> checkbox(%FormInput{form: %Phoenix.HTML.Form{data: %{name: "someValue"}}, field: :name, label: "Name", input_attrs: [class: "A"], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-check"><input name="name" type="hidden" value="false"><input class="A" id="name" name="name" type="checkbox" value="true"><label class="control-label" for="name">Name</label><span class="help-block text-danger">⚠ </span></div>)
+
+  """
   def checkbox(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     Tag.content_tag :div, class: "form-check" do
       [
