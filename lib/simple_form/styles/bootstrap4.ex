@@ -54,7 +54,7 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
-    @doc """
+  @doc """
   Renders an email tag for a form input.
 
   Creates a select for every binary value in the collection array.
