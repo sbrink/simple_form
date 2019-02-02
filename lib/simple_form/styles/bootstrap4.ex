@@ -82,6 +82,13 @@ defmodule SimpleForm.Styles.Bootstrap4 do
   end
 
   # wrapper
+  @doc """
+  Renders a wrapper with label, input group hint an error.
+  The inner block is rendered into the input group.
+
+  iex>wrapper(%FormInput{style_module: Bootstrap4, label: "Label"}, do: "#Inner Block#") |> safe_to_string()
+  ~(<div class="form-group"><label class="control-label" for="_">Label</label>#Inner Block#<span class="help-block text-danger">⚠ </span></div>)
+  """
   def wrapper(%FormInput{style_module: style_module} = form_input, do: block) do
     Tag.content_tag :div, class: "form-group" do
       [
