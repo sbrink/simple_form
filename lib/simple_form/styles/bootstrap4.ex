@@ -60,6 +60,20 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an select tag for a form input.
+
+  Creates a select for every binary value in the collection array.
+
+  iex> textarea(%FormInput{form: %Phoenix.HTML.Form{data: %{name: nil}}, field: :name, label: "Name", input_attrs: [], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><textarea class="form-control" id="name" name="name">\n</textarea><span class="help-block text-danger">⚠ </span></div>)
+
+  You can overwrite the input attributes
+
+  iex> textarea(%FormInput{form: %Phoenix.HTML.Form{data: %{name: "someValue"}}, field: :name, label: "Name", input_attrs: [class: "A",rows: 9], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><textarea class="A" id="name" name="name" rows="9">\nsomeValue</textarea><span class="help-block text-danger">⚠ </span></div>)
+
+  """
   def textarea(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
       Form.textarea(form, field, Keyword.merge([class: "form-control"], input_attrs))
