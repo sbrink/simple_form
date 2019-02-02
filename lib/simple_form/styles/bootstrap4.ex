@@ -102,7 +102,7 @@ defmodule SimpleForm.Styles.Bootstrap4 do
   @doc """
   Renders a input group
 
-  When no special config is passed just render the block.
+  Without any special attribute the function renders just the inner block.
 
   iex> input_group(%FormInput{style_module: Bootstrap4}, ~s(<div>Inner Block</div>))
   ~s(<div>Inner Block</div>)
