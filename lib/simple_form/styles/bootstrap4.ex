@@ -119,7 +119,7 @@ defmodule SimpleForm.Styles.Bootstrap4 do
   end
 
   @doc """
-  Renders an error tag for a form input.
+  Renders an label tag for a form input.
 
   iex> label(%FormInput{label: false}) |> safe_to_string()
   ""
@@ -148,7 +148,7 @@ defmodule SimpleForm.Styles.Bootstrap4 do
   end
 
   @doc """
-  Renders an error tag for a form input.
+  Renders an hint tag for a form input.
 
   iex> hint(%FormInput{hint: nil}) |> safe_to_string()
   ""
