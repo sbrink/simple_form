@@ -140,11 +140,11 @@ defmodule SimpleForm.Styles.Bootstrap4 do
   def label(%FormInput{label: false}), do: HTML.raw("")
 
   def label(%FormInput{form: form, field: field, label: label, label_attrs: label_attrs, required: true}) do
-    Form.label(form, field, label, Keyword.merge(label_attrs, class: "control-label required"))
+    Form.label(form, field, label, Keyword.merge([class: "control-label required"], label_attrs))
   end
 
   def label(%FormInput{form: form, field: field, label: label, label_attrs: label_attrs}) do
-    Form.label(form, field, label, Keyword.merge(label_attrs, class: "control-label"))
+    Form.label(form, field, label, Keyword.merge([class: "control-label"], label_attrs))
   end
 
   @doc """
