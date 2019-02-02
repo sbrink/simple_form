@@ -93,6 +93,25 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders a input group
+
+  When no special config is passed just render the block.
+
+  iex> input_group(%FormInput{style_module: Bootstrap4}, ~s(<div>Inner Block</div>))
+  ~s(<div>Inner Block</div>)
+
+
+  With `:prepend_text` you're able to prepend some text for the input group.
+
+  iex> input_group(%FormInput{style_module: Bootstrap4, wrapper_attrs: [prepend_text: "Some Test"]}, "#Inner Block#") |> safe_to_string()
+  ~s(<div class="input-group"><div class="input-group-prepend"><span class="input-group-text">Some Test</span></div>#Inner Block#</div>)
+
+  With `:append_text` you're able to append some text for the input group.
+
+  iex> input_group(%FormInput{style_module: Bootstrap4, wrapper_attrs: [append_text: "Some Test"]}, "#Inner Block#") |> safe_to_string()
+  ~s(<div class="input-group">#Inner Block#<div class="input-group-append"><span class="input-group-text">Some Test</span></div></div>)
+  """
   def input_group(%FormInput{style_module: _style_module, wrapper_attrs: wrapper_attrs} = _form_input, block) do
     prepend_text_block =
       if prepend_text = Keyword.get(wrapper_attrs, :prepend_text) do
