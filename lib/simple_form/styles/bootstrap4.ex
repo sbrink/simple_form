@@ -66,6 +66,20 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an select tag for a form input.
+
+  Creates a select for every binary value in the collection array.
+
+  iex> plain(%FormInput{form: %Phoenix.HTML.Form{data: %{name: nil}}, field: :name, label: "Name", input_attrs: [], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><input class="form-control-plaintext" id="name" name="name" type="text" readonly><span class="help-block text-danger">⚠ </span></div>)
+
+  You can overwrite the input attributes
+
+  iex> plain(%FormInput{form: %Phoenix.HTML.Form{data: %{name: "someValue"}}, field: :name, label: "Name", input_attrs: [class: "A"], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><input class="A" id="name" name="name" type="text" value="someValue" readonly><span class="help-block text-danger">⚠ </span></div>)
+
+  """
   def plain(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
       Form.text_input(form, field, Keyword.merge([class: "form-control-plaintext", readonly: true], input_attrs))
@@ -89,7 +103,6 @@ defmodule SimpleForm.Styles.Bootstrap4 do
 
   iex> select(%FormInput{form: %Phoenix.HTML.Form{data: %{name: ""}}, field: :name, label: "Name", input_attrs: [class: "A"], collection: [{"A", "1"},{"B", "2"},{"C", "3"}], style_module: Bootstrap4}) |> safe_to_string()
   ~s(<div class="form-group"><label class="control-label" for="name">Name</label><select class="A" id="name" name="name"><option value="1">A</option><option value="2">B</option><option value="3">C</option></select><span class="help-block text-danger">⚠ </span></div>)
-
 
   """
   def select(%FormInput{form: form, field: field, input_attrs: input_attrs, collection: collection, style_module: style_module} = form_input) do
