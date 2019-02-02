@@ -70,6 +70,13 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an debug tag for a form input.
+
+  iex> debug(%FormInput{}) |> safe_to_string()
+  ~s(<pre>#{%FormInput{} |> inspect(pretty: true)}</pre>)
+
+  """
   def debug(%FormInput{} = form_opts) do
     Tag.content_tag(:pre, inspect(form_opts, pretty: true))
   end
