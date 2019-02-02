@@ -29,6 +29,18 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an number input for a form input.
+
+  iex> number_input(%FormInput{form: %Phoenix.HTML.Form{data: %{name: nil}}, field: :name, label: "Name", input_attrs: [], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><input class="form-control" id="name" name="name" type="number"><span class="help-block text-danger">⚠ </span></div>)
+
+  You can overwrite the input attributes
+
+  iex> number_input(%FormInput{form: %Phoenix.HTML.Form{data: %{name: "someValue"}}, field: :name, label: "Name", input_attrs: [class: "A"], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><input class="A" id="name" name="name" type="number" value="someValue"><span class="help-block text-danger">⚠ </span></div>)
+
+  """
   def number_input(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
       Form.number_input(form, field, Keyword.merge([class: "form-control"], input_attrs))
