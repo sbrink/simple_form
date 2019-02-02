@@ -73,11 +73,23 @@ defmodule SimpleForm.Styles.Bootstrap4 do
   end
 
   @doc """
-  Renders an debug tag for a form input.
+  Renders an select tag for a form input.
 
-  TODO: Import/Mock Ecto.Schema for this test and use a schema at data to provide all information for the phoenix form helper
-  # iex> select(%FormInput{form: %Phoenix.HTML.Form{data: %{name: ""}}, field: :name, input_attrs: [], collection: ["ABC"], style_module: Bootstrap4}) |> safe_to_string()
-  ""
+  Creates a select for every binary value in the collection array.
+
+  iex> select(%FormInput{form: %Phoenix.HTML.Form{data: %{name: ""}}, field: :name, label: "Name", input_attrs: [], collection: ["A","B","C"], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><select class="form-control c-select" id="name" name="name"><option value="A">A</option><option value="B">B</option><option value="C">C</option></select><span class="help-block text-danger">⚠ </span></div>)
+
+  With a list of tupels the name and value of each select can be set individually.
+
+  iex> select(%FormInput{form: %Phoenix.HTML.Form{data: %{name: ""}}, field: :name, label: "Name", input_attrs: [], collection: [{"A", "1"},{"B", "2"},{"C", "3"}], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><select class="form-control c-select" id="name" name="name"><option value="1">A</option><option value="2">B</option><option value="3">C</option></select><span class="help-block text-danger">⚠ </span></div>)
+
+  You can overwrite the input attributes
+
+  iex> select(%FormInput{form: %Phoenix.HTML.Form{data: %{name: ""}}, field: :name, label: "Name", input_attrs: [class: "A"], collection: [{"A", "1"},{"B", "2"},{"C", "3"}], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><select class="A" id="name" name="name"><option value="1">A</option><option value="2">B</option><option value="3">C</option></select><span class="help-block text-danger">⚠ </span></div>)
+
 
   """
   def select(%FormInput{form: form, field: field, input_attrs: input_attrs, collection: collection, style_module: style_module} = form_input) do
