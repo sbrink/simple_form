@@ -35,6 +35,19 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     end
   end
 
+  @doc """
+  Renders an input field with `type="text"`.
+
+  iex> text_input(%FormInput{form: %Phoenix.HTML.Form{data: %{name: nil}}, field: :name, label: "Name", style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><input class="form-control" id="name" name="name" type="text"><span class="help-block text-danger">⚠ </span></div>)
+
+  iex> text_input(%FormInput{form: %Phoenix.HTML.Form{data: %{name: "NameValue"}}, field: :name, label: "Name", style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><input class="form-control" id="name" name="name" type="text" value="NameValue"><span class="help-block text-danger">⚠ </span></div>)
+
+  iex> text_input(%FormInput{form: %Phoenix.HTML.Form{data: %{name: "NameValue"}}, field: :name, label: "Name", input_attrs: [class: "A"], style_module: Bootstrap4}) |> safe_to_string()
+  ~s(<div class="form-group"><label class="control-label" for="name">Name</label><input class="A" id="name" name="name" type="text" value="NameValue"><span class="help-block text-danger">⚠ </span></div>)
+
+  """
   def text_input(%FormInput{form: form, field: field, input_attrs: input_attrs, style_module: style_module} = form_input) do
     style_module.wrapper form_input do
       Form.text_input(form, field, Keyword.merge([class: "form-control"], input_attrs))
