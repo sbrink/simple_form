@@ -81,7 +81,6 @@ defmodule SimpleForm.Styles.Bootstrap4 do
     Tag.content_tag(:pre, inspect(form_opts, pretty: true))
   end
 
-  # wrapper
   @doc """
   Renders a wrapper with label, input group hint an error.
   The inner block is rendered into the input group.
