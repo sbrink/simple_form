@@ -1,4 +1,10 @@
 defmodule SimpleForm.Styles.Bootstrap4 do
+  @moduledoc """
+
+  FormInputStyle implementation for Bootstrap 4 Forms.
+
+  """
+
   @behaviour SimpleForm.FormInputStyle
   alias Phoenix.HTML
   alias Phoenix.HTML.Form
