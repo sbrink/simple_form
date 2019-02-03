@@ -1,16 +1,18 @@
-defmodule SimpleForm.MixProject do
+defmodule Phoenix.SimpleForm.MixProject do
   use Mix.Project
 
   def project do
     [
       aliases: aliases(),
-      app: :simple_form,
-      version: "0.1.0",
+      app: :phoenix_simple_form,
+      version: "0.3.0",
       elixir: "~> 1.7",
-      elixirc_paths: elixirc_paths(Mix.env),
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
+      package: package(),
+      description: "Easy form handling for phoenix",
       preferred_cli_env: [
         cov: :test,
         coveralls: :test,
@@ -43,6 +45,14 @@ defmodule SimpleForm.MixProject do
       {:ex_machina, "~> 2.2", only: :test}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["Sascha Brink", "Robin Boehm"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/sbrink/phoenix_simple_form"}
     ]
   end
 

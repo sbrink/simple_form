@@ -1,4 +1,4 @@
-# SimpleForm
+# PhoenixSimpleForm
 
 Simple. Explicit. Extensible.
 
