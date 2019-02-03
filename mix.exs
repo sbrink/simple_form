@@ -33,6 +33,7 @@ defmodule SimpleForm.MixProject do
     [
       {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
       {:phoenix_html, ">= 2.0.0"},
+      {:phoenix_ecto, "~> 4.0", only: :test},
       {:excoveralls, "~> 0.10.0", only: :test},
       {:credo, "~> 1.0", only: :test}
       # {:dep_from_hexpm, "~> 0.3.0"},
