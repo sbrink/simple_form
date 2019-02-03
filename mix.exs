@@ -15,7 +15,8 @@ defmodule SimpleForm.MixProject do
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.html": :test,
-        "coveralls.post": :test
+        "coveralls.post": :test,
+        credo: :test
       ]
     ]
   end
@@ -33,6 +34,7 @@ defmodule SimpleForm.MixProject do
       {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
       {:phoenix_html, ">= 2.0.0"},
       {:excoveralls, "~> 0.10.0", only: :test},
+      {:credo, "~> 1.0", only: :test}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
