@@ -1,4 +1,20 @@
 defmodule SimpleForm.FormInput do
+  @moduledoc ~S"""
+
+  Configuration struct that defines the entrypoint for a SimpleForm invokation
+
+  <%= input f, :user_id, collection: @form_collections.users %>
+
+  The following options are supported
+
+  - `label` - Overwrite the default labelname with is the name of the field humanized.
+  - `collection` - Define a list of values for a select input
+  - `hint` - Define a hint text
+  - `label_attrs`- Overwrite the attributes of the label
+  - `wrapper_attrs` - Overwrite the attributes of the wrapper
+  - `input_attrs` - Overwrite the attributes of the input
+
+  """
   defstruct form: nil,
             field: nil,
             field_str: nil,
