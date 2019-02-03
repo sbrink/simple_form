@@ -9,23 +9,7 @@ defmodule SimpleForm.Factory do
       errors_translated: [],
       field: :name,
       field_str: "name",
-      form: %Phoenix.HTML.Form{
-        action: nil,
-        data: nil,
-        errors: [],
-        hidden: [],
-        id: nil,
-        impl: Phoenix.HTML.FormData.Ecto.Changeset,
-        index: nil,
-        name: nil,
-        options: [],
-        params: %{},
-        source: %{
-          required: [],
-          types: %{name: :string},
-          validations: []
-        }
-      },
+      form: build(:form),
       hint: nil,
       input_attrs: [],
       label: "Name",
@@ -41,11 +25,22 @@ defmodule SimpleForm.Factory do
 
   def form_factory do
     %Phoenix.HTML.Form{
-      impl: Phoenix.HTML.FormData.Ecto.Changeset,
+      action: nil,
+        data: nil,
+        errors: [],
+        hidden: [],
+        id: nil,
+        impl: Phoenix.HTML.FormData.Ecto.Changeset,
+        index: nil,
+        name: nil,
+        options: [],
+        params: %{},
       source: %{
         types: %{name: :string},
         required: [],
-        validations: []
+        validations: [],
+        changes: %{},
+        data: %{}
       }
     }
   end

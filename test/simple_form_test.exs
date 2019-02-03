@@ -13,10 +13,7 @@ defmodule SimpleFormTest do
 
       form_input =
         input(
-          %Phoenix.HTML.Form{
-            impl: Phoenix.HTML.FormData.Ecto.Changeset,
-            source: %{types: %{name: :string}, required: [], validations: [], data: %{}, changes: %{}}
-          },
+          SimpleForm.Factory.build(:form),
           :name,
           opts
         )
@@ -36,10 +33,7 @@ defmodule SimpleFormTest do
 
       fn_that_raise_exeption = fn ->
         input(
-          %Phoenix.HTML.Form{
-            impl: Phoenix.HTML.FormData.Ecto.Changeset,
-            source: %{types: %{name: :string}, required: [], validations: [], data: %{}, changes: %{}}
-          },
+          SimpleForm.Factory.build(:form),
           :name,
           opts
         )
