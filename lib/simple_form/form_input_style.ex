@@ -1,4 +1,9 @@
 defmodule SimpleForm.FormInputStyle do
+  @moduledoc """
+
+  Behaviour that defines the structure of a style adapter.
+
+  """
   @callback checkbox(SimpleForm.FormInput.t()) :: tuple
   @callback date_select(SimpleForm.FormInput.t()) :: tuple
   @callback datetime_select(SimpleForm.FormInput.t()) :: tuple

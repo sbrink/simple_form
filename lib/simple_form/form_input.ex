@@ -1,4 +1,20 @@
 defmodule SimpleForm.FormInput do
+  @moduledoc ~S"""
+
+  Configuration struct that defines the entrypoint for a SimpleForm invokation
+
+  <%= input f, :user_id, collection: @form_collections.users %>
+
+  The following options are supported
+
+  - `label` - Overwrite the default labelname with is the name of the field humanized.
+  - `collection` - Define a list of values for a select input
+  - `hint` - Define a hint text
+  - `label_attrs`- Overwrite the attributes of the label
+  - `wrapper_attrs` - Overwrite the attributes of the wrapper
+  - `input_attrs` - Overwrite the attributes of the input
+
+  """
   defstruct form: nil,
             field: nil,
             field_str: nil,
@@ -17,6 +33,24 @@ defmodule SimpleForm.FormInput do
             errors_translated: nil,
             style_module: nil
 
+  @doc """
+
+  Takes a form and generates input opts
+
+  `build(form, field, opts, translate_fn, style_module)`
+
+  When you're using validate_required in your changeset the `required` field is set to true.
+
+  ```
+  @fields ~w(name)a
+  def changeset(event, attrs, :default) do
+    event
+    |> cast(attrs, @fields)
+    |> validate_required(~w(name)a)
+  end
+  ```
+
+  """
   def build(%Phoenix.HTML.Form{} = form, field, opts, translate_fn, style_module) do
     label_human = Phoenix.HTML.Form.humanize(field)
 
