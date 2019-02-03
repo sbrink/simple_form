@@ -25,5 +25,28 @@ defmodule SimpleFormTest do
       assert form_input ==
                ~s(<div class="form-group"><label class="control-label" for="name">Name</label><input class="form-control" id="name" name="name" type="text"></div>)
     end
+
+    test "should raise an exeption of the style is not implemented" do
+      defmodule EmptyStyleModule do
+      end
+
+      opts = []
+      opts = Keyword.put(opts, :_style, EmptyStyleModule)
+      opts = Keyword.put(opts, :_translate_error_fn, fn x -> x end)
+
+      fn_that_raise_exeption = fn ->
+        input(
+          %Phoenix.HTML.Form{
+            impl: Phoenix.HTML.FormData.Ecto.Changeset,
+            source: %{types: %{name: :string}, required: [], validations: [], data: %{}, changes: %{}}
+          },
+          :name,
+          opts
+        )
+        |> safe_to_string()
+      end
+
+      assert_raise RuntimeError, "Input not defined text_input", fn_that_raise_exeption
+    end
   end
 end
