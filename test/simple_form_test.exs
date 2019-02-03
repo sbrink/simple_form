@@ -12,11 +12,8 @@ defmodule SimpleFormTest do
       opts = Keyword.put(opts, :_translate_error_fn, fn x -> x end)
 
       form_input =
-        input(
-          SimpleForm.Factory.build(:form),
-          :name,
-          opts
-        )
+        SimpleForm.Factory.build(:form)
+        |> input(:name, opts)
         |> safe_to_string()
 
       assert form_input ==
@@ -37,7 +34,6 @@ defmodule SimpleFormTest do
           :name,
           opts
         )
-        |> safe_to_string()
       end
 
       assert_raise RuntimeError, "Input not defined text_input", fn_that_raise_exeption

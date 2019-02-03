@@ -1,4 +1,7 @@
 defmodule SimpleForm.Factory do
+  @moduledoc """
+  Factories used for ex_machina.
+  """
   use ExMachina
 
   def form_input_factory do
