@@ -37,82 +37,18 @@ defmodule SimpleForm.FormInput do
 
   Takes a form and generates input opts
 
-  iex> build(%Phoenix.HTML.Form{impl: Phoenix.HTML.FormData.Ecto.Changeset, source: %{types: %{name: :string}, required: [], validations: []}}, :name, [], fn x -> x end, SimpleForm.Styles.Bootstrap4)
-  %SimpleForm.FormInput{
-              clean_opts: [],
-              collection: nil,
-              errors: [],
-              errors_translated: [],
-              field: :name,
-              field_str: "name",
-              form: %Phoenix.HTML.Form{
-                action: nil,
-                data: nil,
-                errors: [],
-                hidden: [],
-                id: nil,
-                impl: Phoenix.HTML.FormData.Ecto.Changeset,
-                index: nil,
-                name: nil,
-                options: [],
-                params: %{},
-                source: %{
-                  required: [],
-                  types: %{name: :string},
-                  validations: []
-                }
-              },
-              hint: nil,
-              input_attrs: [],
-              label: "Name",
-              label_attrs: [],
-              label_human: "Name",
-              label_translated: nil,
-              opts: [],
-              required: false,
-              style_module: SimpleForm.Styles.Bootstrap4,
-              wrapper_attrs: []
-            }
+  `build(form, field, opts, translate_fn, style_module)`
 
+  When you're using validate_required in your changeset the `required` field is set to true.
 
-  Detect required state from ecto schema.
-
-  iex> build(%Phoenix.HTML.Form{impl: Phoenix.HTML.FormData.Ecto.Changeset, source: %{types: %{name: :string}, required: [:name], validations: []}}, :name, [], fn x -> x end, SimpleForm.Styles.Bootstrap4)
-  %SimpleForm.FormInput{
-              clean_opts: [],
-              collection: nil,
-              errors: [],
-              errors_translated: [],
-              field: :name,
-              field_str: "name",
-              form: %Phoenix.HTML.Form{
-                action: nil,
-                data: nil,
-                errors: [],
-                hidden: [],
-                id: nil,
-                impl: Phoenix.HTML.FormData.Ecto.Changeset,
-                index: nil,
-                name: nil,
-                options: [],
-                params: %{},
-                source: %{
-                  required: [:name],
-                  types: %{name: :string},
-                  validations: []
-                }
-              },
-              hint: nil,
-              input_attrs: [],
-              label: "Name",
-              label_attrs: [],
-              label_human: "Name",
-              label_translated: nil,
-              opts: [],
-              required: true,
-              style_module: SimpleForm.Styles.Bootstrap4,
-              wrapper_attrs: []
-            }
+  ```
+  @fields ~w(name)a
+  def changeset(event, attrs, :default) do
+    event
+    |> cast(attrs, @fields)
+    |> validate_required(~w(name)a)
+  end
+  ```
 
   """
   def build(%Phoenix.HTML.Form{} = form, field, opts, translate_fn, style_module) do
