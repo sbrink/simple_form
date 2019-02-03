@@ -1,10 +1,11 @@
-defmodule SimpleForm.Styles.Bootstrap4Test do
+defmodule Phoenix.SimpleForm.Styles.Bootstrap4Test do
   use ExUnit.Case
 
   import Phoenix.HTML
-  import SimpleForm.Styles.Bootstrap4
-  alias SimpleForm.FormInput
-  alias SimpleForm.Styles.Bootstrap4
+  import Phoenix.SimpleForm.Styles.Bootstrap4
+  alias Phoenix.SimpleForm.FormInput
+  alias Phoenix.SimpleForm.Styles.Bootstrap4
+  alias Phoenix.SimpleForm.Factory
 
-  doctest SimpleForm.Styles.Bootstrap4
+  doctest Phoenix.SimpleForm.Styles.Bootstrap4
 end

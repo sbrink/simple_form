@@ -1,4 +1,4 @@
-defmodule SimpleForm.FormInput do
+defmodule Phoenix.SimpleForm.FormInput do
   @moduledoc ~S"""
 
   Configuration struct that defines the entrypoint for a SimpleForm invokation

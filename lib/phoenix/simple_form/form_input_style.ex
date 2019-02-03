@@ -1,4 +1,4 @@
-defmodule SimpleForm.FormInputStyle do
+defmodule Phoenix.SimpleForm.FormInputStyle do
   @moduledoc """
 
   Behaviour that defines the structure of a style adapter.

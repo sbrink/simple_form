@@ -1,39 +1,39 @@
-defmodule SimpleForm.FormInputTest do
+defmodule Phoenix.SimpleForm.FormInputTest do
   use ExUnit.Case
-  import SimpleForm.FormInput
-  doctest SimpleForm.FormInput
+  import Phoenix.SimpleForm.FormInput
+  doctest Phoenix.SimpleForm.FormInput
 
   describe "form_input" do
     test "takes a form and generates input opts" do
       input_opts =
         build(
-          SimpleForm.Factory.build(:form),
+          Phoenix.SimpleForm.Factory.build(:form),
           :name,
           [],
           fn x -> x end,
-          SimpleForm.Styles.Bootstrap4
+          Phoenix.SimpleForm.Styles.Bootstrap4
         )
 
-      assert input_opts == SimpleForm.Factory.build(:form_input)
+      assert input_opts == Phoenix.SimpleForm.Factory.build(:form_input)
     end
 
     test "detect required state from ecto schema." do
       input_opts_with_required =
         build(
-          SimpleForm.Factory.build(:form, source: %{required: [:name], types: %{name: :string}, validations: []}),
+          Phoenix.SimpleForm.Factory.build(:form, source: %{required: [:name], types: %{name: :string}, validations: []}),
           :name,
           [],
           fn x -> x end,
-          SimpleForm.Styles.Bootstrap4
+          Phoenix.SimpleForm.Styles.Bootstrap4
         )
 
       input_opts_without_required =
         build(
-          SimpleForm.Factory.build(:form, source: %{required: [], types: %{name: :string}, validations: []}),
+          Phoenix.SimpleForm.Factory.build(:form, source: %{required: [], types: %{name: :string}, validations: []}),
           :name,
           [],
           fn x -> x end,
-          SimpleForm.Styles.Bootstrap4
+          Phoenix.SimpleForm.Styles.Bootstrap4
         )
 
       assert input_opts_with_required.required == true

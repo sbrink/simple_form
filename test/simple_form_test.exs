@@ -1,18 +1,18 @@
-defmodule SimpleFormTest do
+defmodule Phoenix.SimpleFormTest do
   use ExUnit.Case
   import Phoenix.HTML
-  import SimpleForm
+  import Phoenix.SimpleForm
 
-  doctest SimpleForm
+  doctest Phoenix.SimpleForm
 
   describe "build" do
     test "should build a input" do
       opts = []
-      opts = Keyword.put(opts, :_style, SimpleForm.Styles.Bootstrap4)
+      opts = Keyword.put(opts, :_style, Phoenix.SimpleForm.Styles.Bootstrap4)
       opts = Keyword.put(opts, :_translate_error_fn, fn x -> x end)
 
       form_input =
-        SimpleForm.Factory.build(:form)
+        Phoenix.SimpleForm.Factory.build(:form)
         |> input(:name, opts)
         |> safe_to_string()
 
@@ -30,7 +30,7 @@ defmodule SimpleFormTest do
 
       fn_that_raise_exeption = fn ->
         input(
-          SimpleForm.Factory.build(:form),
+          Phoenix.SimpleForm.Factory.build(:form),
           :name,
           opts
         )

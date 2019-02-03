@@ -1,11 +1,11 @@
-defmodule SimpleForm.Factory do
+defmodule Phoenix.SimpleForm.Factory do
   @moduledoc """
   Factories used for ex_machina.
   """
   use ExMachina
 
   def form_input_factory do
-    %SimpleForm.FormInput{
+    %Phoenix.SimpleForm.FormInput{
       clean_opts: [],
       collection: nil,
       errors: [],
@@ -21,7 +21,7 @@ defmodule SimpleForm.Factory do
       label_translated: nil,
       opts: [],
       required: false,
-      style_module: SimpleForm.Styles.Bootstrap4,
+      style_module: Phoenix.SimpleForm.Styles.Bootstrap4,
       wrapper_attrs: []
     }
   end

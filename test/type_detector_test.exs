@@ -1,6 +1,6 @@
-defmodule SimpleForm.TypeDetectorTest do
+defmodule Phoenix.SimpleForm.TypeDetectorTest do
   use ExUnit.Case
-  import SimpleForm.TypeDetector
+  import Phoenix.SimpleForm.TypeDetector
 
-  doctest SimpleForm.TypeDetector
+  doctest Phoenix.SimpleForm.TypeDetector
 end

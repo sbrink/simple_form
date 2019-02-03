@@ -1,9 +1,9 @@
-defmodule SimpleForm do
+defmodule Phoenix.SimpleForm do
   @moduledoc """
   Documentation for SimpleForm.
   """
-  alias SimpleForm.FormInput
-  alias SimpleForm.TypeDetector
+  alias Phoenix.SimpleForm.FormInput
+  alias Phoenix.SimpleForm.TypeDetector
 
   def input(form, field, opts \\ []) do
     {input_type, opts} = Keyword.pop(opts, :as, TypeDetector.get_input_type(form, field, opts))
